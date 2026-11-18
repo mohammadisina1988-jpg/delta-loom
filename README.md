@@ -17,6 +17,8 @@ Integers are big-endian. Lengths must be positive. Empty target data uses empty 
 
 ## Verification
 
+[StudioNet receipts and state checks](proofs/README.md) · [Submission text](SUBMISSION.md)
+
 ```sh
 pip install -r requirements-dev.txt
 genvm-lint download --version v0.2.16

@@ -1,0 +1,223 @@
+{
+  "contract": "0xAD8e2a969628C4b6350b6E5207634f3dec610f9B",
+  "deployment": "0xe966e840bd1e83a389c5d421082fc37f2a03af307b7f2f88f70612ccb95188cd",
+  "resumed": true,
+  "revision": "97efbfb4a3ba65d7bdc4e3ae079a156d5c37077b",
+  "source_sha256": "822b8e59697385da57ea1785d4d0eed52ce941138ce54b7115eb1a7ffe046886",
+  "fixtures": {
+    "base": "16c7d7ad8c23ef27ccc8fe3c605752024a4d353f7e0b745defad7e6b0430b719",
+    "target": "bd84dd03bcc0a47fe390ddfb979bfbe8680298f48d229c0115aa398ecc6f156c"
+  },
+  "deltas": {
+    "forward": {
+      "base_sha256": "16c7d7ad8c23ef27ccc8fe3c605752024a4d353f7e0b745defad7e6b0430b719",
+      "base_size": 572,
+      "base_url": "https://raw.githubusercontent.com/github/gitignore/74cf7151d96a6eaacd4f66fd59b01a140036d857/Go.gitignore",
+      "id": "b111baed173c321c09ecffab7247c48be2e432bddfad7a8d3b518926fce56dd2",
+      "patch_bytes": 38,
+      "patch_hex": "000000016901000468746d6c00015f000a010002747800015e000b010003786d6c00017700c5",
+      "target_sha256": "bd84dd03bcc0a47fe390ddfb979bfbe8680298f48d229c0115aa398ecc6f156c",
+      "target_size": 588,
+      "target_url": "https://raw.githubusercontent.com/github/gitignore/c2043973f0fcbdb3da5d68c46f446fe41350480c/Go.gitignore"
+    },
+    "reverse": {
+      "base_sha256": "bd84dd03bcc0a47fe390ddfb979bfbe8680298f48d229c0115aa398ecc6f156c",
+      "base_size": 588,
+      "base_url": "https://raw.githubusercontent.com/github/gitignore/c2043973f0fcbdb3da5d68c46f446fe41350480c/Go.gitignore",
+      "id": "837db273b5a881518b71da773b607868f23c72be53ec6bbe592653d2a1ab9cd2",
+      "patch_bytes": 26,
+      "patch_hex": "00000001690100032a0a210001600009000114000200018700c5",
+      "target_sha256": "16c7d7ad8c23ef27ccc8fe3c605752024a4d353f7e0b745defad7e6b0430b719",
+      "target_size": 572,
+      "target_url": "https://raw.githubusercontent.com/github/gitignore/74cf7151d96a6eaacd4f66fd59b01a140036d857/Go.gitignore"
+    }
+  },
+  "trace": [
+    {
+      "label": "deploy",
+      "hash": "0xe966e840bd1e83a389c5d421082fc37f2a03af307b7f2f88f70612ccb95188cd",
+      "status": "FINALIZED",
+      "execution": "SUCCESS",
+      "result": "MAJORITY_AGREE",
+      "agree": 3,
+      "disagree": 0,
+      "idle": 2,
+      "signer": "0x830d5c5149e5b324fd7a6792619f6e4d6b253fba",
+      "args": {
+        "args": []
+      },
+      "error": null,
+      "state": {
+        "forward": {},
+        "reverse": {},
+        "missing": {}
+      }
+    },
+    {
+      "label": "forward",
+      "hash": "0x811d3c35dfa7785bcf8f84b891874a4e7e2e86f572fc05ae81e04d9838e1118d",
+      "status": "FINALIZED",
+      "execution": "SUCCESS",
+      "result": "MAJORITY_AGREE",
+      "agree": 3,
+      "disagree": 0,
+      "idle": 2,
+      "signer": "0xb7ca606f6ffdb4bf6f60ae95ae3ef432e38ac796",
+      "args": {
+        "method": "synthesize",
+        "args": [
+          "https://raw.githubusercontent.com/github/gitignore/74cf7151d96a6eaacd4f66fd59b01a140036d857/Go.gitignore",
+          "https://raw.githubusercontent.com/github/gitignore/c2043973f0fcbdb3da5d68c46f446fe41350480c/Go.gitignore"
+        ]
+      },
+      "error": null,
+      "state": {
+        "forward": {
+          "base_sha256": "16c7d7ad8c23ef27ccc8fe3c605752024a4d353f7e0b745defad7e6b0430b719",
+          "base_size": 572,
+          "base_url": "https://raw.githubusercontent.com/github/gitignore/74cf7151d96a6eaacd4f66fd59b01a140036d857/Go.gitignore",
+          "id": "b111baed173c321c09ecffab7247c48be2e432bddfad7a8d3b518926fce56dd2",
+          "patch_bytes": 38,
+          "patch_hex": "000000016901000468746d6c00015f000a010002747800015e000b010003786d6c00017700c5",
+          "target_sha256": "bd84dd03bcc0a47fe390ddfb979bfbe8680298f48d229c0115aa398ecc6f156c",
+          "target_size": 588,
+          "target_url": "https://raw.githubusercontent.com/github/gitignore/c2043973f0fcbdb3da5d68c46f446fe41350480c/Go.gitignore"
+        },
+        "reverse": {},
+        "missing": {}
+      }
+    },
+    {
+      "label": "reverse",
+      "hash": "0x8849ee005858070a800e01ef1b785370b8ed937ace0ad136d50ea9db12beeefe",
+      "status": "FINALIZED",
+      "execution": "SUCCESS",
+      "result": "MAJORITY_AGREE",
+      "agree": 3,
+      "disagree": 0,
+      "idle": 2,
+      "signer": "0xbb1f3a5b296b015b75c67edcc01defcd07fb0312",
+      "args": {
+        "method": "synthesize",
+        "args": [
+          "https://raw.githubusercontent.com/github/gitignore/c2043973f0fcbdb3da5d68c46f446fe41350480c/Go.gitignore",
+          "https://raw.githubusercontent.com/github/gitignore/74cf7151d96a6eaacd4f66fd59b01a140036d857/Go.gitignore"
+        ]
+      },
+      "error": null,
+      "state": {
+        "forward": {
+          "base_sha256": "16c7d7ad8c23ef27ccc8fe3c605752024a4d353f7e0b745defad7e6b0430b719",
+          "base_size": 572,
+          "base_url": "https://raw.githubusercontent.com/github/gitignore/74cf7151d96a6eaacd4f66fd59b01a140036d857/Go.gitignore",
+          "id": "b111baed173c321c09ecffab7247c48be2e432bddfad7a8d3b518926fce56dd2",
+          "patch_bytes": 38,
+          "patch_hex": "000000016901000468746d6c00015f000a010002747800015e000b010003786d6c00017700c5",
+          "target_sha256": "bd84dd03bcc0a47fe390ddfb979bfbe8680298f48d229c0115aa398ecc6f156c",
+          "target_size": 588,
+          "target_url": "https://raw.githubusercontent.com/github/gitignore/c2043973f0fcbdb3da5d68c46f446fe41350480c/Go.gitignore"
+        },
+        "reverse": {
+          "base_sha256": "bd84dd03bcc0a47fe390ddfb979bfbe8680298f48d229c0115aa398ecc6f156c",
+          "base_size": 588,
+          "base_url": "https://raw.githubusercontent.com/github/gitignore/c2043973f0fcbdb3da5d68c46f446fe41350480c/Go.gitignore",
+          "id": "837db273b5a881518b71da773b607868f23c72be53ec6bbe592653d2a1ab9cd2",
+          "patch_bytes": 26,
+          "patch_hex": "00000001690100032a0a210001600009000114000200018700c5",
+          "target_sha256": "16c7d7ad8c23ef27ccc8fe3c605752024a4d353f7e0b745defad7e6b0430b719",
+          "target_size": 572,
+          "target_url": "https://raw.githubusercontent.com/github/gitignore/74cf7151d96a6eaacd4f66fd59b01a140036d857/Go.gitignore"
+        },
+        "missing": {}
+      }
+    },
+    {
+      "label": "missing",
+      "hash": "0xd297e6f59c4ff5e87206068736622395a6728c0d746b81c5fd7872978163b26f",
+      "status": "FINALIZED",
+      "execution": "ERROR",
+      "result": "MAJORITY_AGREE",
+      "agree": 3,
+      "disagree": 0,
+      "idle": 2,
+      "signer": "0xb7ca606f6ffdb4bf6f60ae95ae3ef432e38ac796",
+      "args": {
+        "method": "synthesize",
+        "args": [
+          "https://raw.githubusercontent.com/github/gitignore/74cf7151d96a6eaacd4f66fd59b01a140036d857/Go.gitignore",
+          "https://raw.githubusercontent.com/github/gitignore/c2043973f0fcbdb3da5d68c46f446fe41350480c/NoSuchDeltaLoomProofArtifact.bin"
+        ]
+      },
+      "error": "Artifact unavailable",
+      "state": {
+        "forward": {
+          "base_sha256": "16c7d7ad8c23ef27ccc8fe3c605752024a4d353f7e0b745defad7e6b0430b719",
+          "base_size": 572,
+          "base_url": "https://raw.githubusercontent.com/github/gitignore/74cf7151d96a6eaacd4f66fd59b01a140036d857/Go.gitignore",
+          "id": "b111baed173c321c09ecffab7247c48be2e432bddfad7a8d3b518926fce56dd2",
+          "patch_bytes": 38,
+          "patch_hex": "000000016901000468746d6c00015f000a010002747800015e000b010003786d6c00017700c5",
+          "target_sha256": "bd84dd03bcc0a47fe390ddfb979bfbe8680298f48d229c0115aa398ecc6f156c",
+          "target_size": 588,
+          "target_url": "https://raw.githubusercontent.com/github/gitignore/c2043973f0fcbdb3da5d68c46f446fe41350480c/Go.gitignore"
+        },
+        "reverse": {
+          "base_sha256": "bd84dd03bcc0a47fe390ddfb979bfbe8680298f48d229c0115aa398ecc6f156c",
+          "base_size": 588,
+          "base_url": "https://raw.githubusercontent.com/github/gitignore/c2043973f0fcbdb3da5d68c46f446fe41350480c/Go.gitignore",
+          "id": "837db273b5a881518b71da773b607868f23c72be53ec6bbe592653d2a1ab9cd2",
+          "patch_bytes": 26,
+          "patch_hex": "00000001690100032a0a210001600009000114000200018700c5",
+          "target_sha256": "16c7d7ad8c23ef27ccc8fe3c605752024a4d353f7e0b745defad7e6b0430b719",
+          "target_size": 572,
+          "target_url": "https://raw.githubusercontent.com/github/gitignore/74cf7151d96a6eaacd4f66fd59b01a140036d857/Go.gitignore"
+        },
+        "missing": {}
+      }
+    },
+    {
+      "label": "duplicate",
+      "hash": "0x288c1f4efa04095874a3b3828b22d4d14b4ec402399692c030ea1df0474bfdb4",
+      "status": "FINALIZED",
+      "execution": "ERROR",
+      "result": "MAJORITY_AGREE",
+      "agree": 3,
+      "disagree": 0,
+      "idle": 2,
+      "signer": "0xbb1f3a5b296b015b75c67edcc01defcd07fb0312",
+      "args": {
+        "method": "synthesize",
+        "args": [
+          "https://raw.githubusercontent.com/github/gitignore/74cf7151d96a6eaacd4f66fd59b01a140036d857/Go.gitignore",
+          "https://raw.githubusercontent.com/github/gitignore/c2043973f0fcbdb3da5d68c46f446fe41350480c/Go.gitignore"
+        ]
+      },
+      "error": "Delta already published",
+      "state": {
+        "forward": {
+          "base_sha256": "16c7d7ad8c23ef27ccc8fe3c605752024a4d353f7e0b745defad7e6b0430b719",
+          "base_size": 572,
+          "base_url": "https://raw.githubusercontent.com/github/gitignore/74cf7151d96a6eaacd4f66fd59b01a140036d857/Go.gitignore",
+          "id": "b111baed173c321c09ecffab7247c48be2e432bddfad7a8d3b518926fce56dd2",
+          "patch_bytes": 38,
+          "patch_hex": "000000016901000468746d6c00015f000a010002747800015e000b010003786d6c00017700c5",
+          "target_sha256": "bd84dd03bcc0a47fe390ddfb979bfbe8680298f48d229c0115aa398ecc6f156c",
+          "target_size": 588,
+          "target_url": "https://raw.githubusercontent.com/github/gitignore/c2043973f0fcbdb3da5d68c46f446fe41350480c/Go.gitignore"
+        },
+        "reverse": {
+          "base_sha256": "bd84dd03bcc0a47fe390ddfb979bfbe8680298f48d229c0115aa398ecc6f156c",
+          "base_size": 588,
+          "base_url": "https://raw.githubusercontent.com/github/gitignore/c2043973f0fcbdb3da5d68c46f446fe41350480c/Go.gitignore",
+          "id": "837db273b5a881518b71da773b607868f23c72be53ec6bbe592653d2a1ab9cd2",
+          "patch_bytes": 26,
+          "patch_hex": "00000001690100032a0a210001600009000114000200018700c5",
+          "target_sha256": "16c7d7ad8c23ef27ccc8fe3c605752024a4d353f7e0b745defad7e6b0430b719",
+          "target_size": 572,
+          "target_url": "https://raw.githubusercontent.com/github/gitignore/74cf7151d96a6eaacd4f66fd59b01a140036d857/Go.gitignore"
+        },
+        "missing": {}
+      }
+    }
+  ]
+}
