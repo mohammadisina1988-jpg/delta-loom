@@ -28,8 +28,7 @@ def identifier(base_url, target_url):
     return sha256((base_url + '\0' + target_url).encode()).hexdigest()
 
 
-def download(url):
-    response = gl.nondet.web.get(url)
+def artifact_body(response):
     if response.status != 200:
         fail('Artifact unavailable')
     if len(response.body) > LIMIT:
@@ -152,17 +151,16 @@ def matches_patch(proposal, base, target):
 
 
 def synthesize_delta(base_url, target_url):
-    def acquire():
-        return download(base_url), download(target_url)
-
     def lead():
-        base, target = acquire()
+        base = artifact_body(gl.nondet.web.get(base_url))
+        target = artifact_body(gl.nondet.web.get(target_url))
         patch = optimize(base, target)
         return {**summary(base, target), 'patch_hex': patch.hex(), 'patch_bytes': len(patch)}
 
     def verify(proposal):
         try:
-            base, target = acquire()
+            base = artifact_body(gl.nondet.web.get(base_url))
+            target = artifact_body(gl.nondet.web.get(target_url))
         except gl.vm.UserError as error:
             return not isinstance(proposal, gl.vm.Return) and getattr(proposal, 'message', None) == error.message
         except Exception:
