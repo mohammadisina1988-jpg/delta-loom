@@ -1,6 +1,7 @@
 // Shared CLI transport adaptation from ProbeMinimax; no contract logic.
 const fs=require('node:fs'),path=require('node:path'),os=require('node:os'),util=require('node:util');
-globalThis.fetch=require('./rpc-preflight.cjs').retryPreflight(globalThis.fetch);
+const {retryPreflight, retryLongStudioRead}=require('./rpc-preflight.cjs');
+globalThis.fetch=retryLongStudioRead(retryPreflight(globalThis.fetch));
 const inspect=util.inspect;
 util.inspect=function(value,options,...rest){
   if(options?.depth===null&&options?.colors===false)return JSON.stringify(value,(_,x)=>typeof x==='bigint'?String(x):x);

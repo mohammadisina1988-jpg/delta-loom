@@ -1,5 +1,5 @@
 const fs = require('node:fs');
-const {assert, equal, sourceHash, digest, invoke, read, rpc, receipt, receiptSummary, save, delay} = require('./transport.cjs');
+const {assert, equal, sourceHash, digest, invoke, read, rpc, receipt, receiptSummary, save, record, delay} = require('./transport.cjs');
 const {decodeReceipt} = require('./receipt-calldata.cjs');
 
 const baseUrl = 'https://raw.githubusercontent.com/github/gitignore/74cf7151d96a6eaacd4f66fd59b01a140036d857/Go.gitignore';
@@ -70,16 +70,20 @@ async function main() {
   assert(await rpc('eth_chainId', []) === '0xf22f', 'StudioNet only');
   const code = fs.readFileSync('contracts/delta_loom.py');
   process.env.DELTA_ACCOUNT = wallets[0].name;
-  const deployment = await invoke('deploy', ['deploy', '--contract', 'contracts/delta_loom.py']);
+  const resumed = process.env.DELTA_DEPLOYMENT;
+  if (resumed) assert(/^0x[0-9a-f]{64}$/i.test(resumed), 'Invalid existing deployment hash');
+  const deployment = resumed || await invoke('deploy', ['deploy', '--contract', 'contracts/delta_loom.py']);
   const deployed = await receipt('deploy', deployment, true);
+  if (resumed) record('deploy', deployment);
   const contract = deployed.to_address || deployed.recipient;
   assert(/^0x[0-9a-f]{40}$/i.test(contract) && code.equals(Buffer.from(deployed.data.contract_code, 'base64')),
     'Deployed source mismatch');
-  const report = {contract, deployment, revision: process.env.GITHUB_SHA, source_sha256: sourceHash,
+  const report = {contract, deployment, resumed: Boolean(resumed), revision: process.env.GITHUB_SHA, source_sha256: sourceHash,
     fixtures: {base: digest(base), target: digest(target)}, deltas: {}, trace: []};
 
   async function verify(label, raw, actor, args, error) {
-    assert((raw.from_address || raw.sender).toLowerCase() === wallets[actor].address
+    const signer = (raw.from_address || raw.sender).toLowerCase();
+    assert((actor === null || signer === wallets[actor].address)
       && (raw.to_address || raw.recipient).toLowerCase() === contract.toLowerCase(), 'Wrong receipt addresses');
     assert(equal(await decodeReceipt(raw), args), 'Wrong signed calldata');
     if (error) {
@@ -92,7 +96,7 @@ async function main() {
         ['call', contract, 'get_delta', '--args', ...item.urls]);
       assert(equal(state[item.label], report.deltas[item.label] || {}), 'Unexpected persisted delta');
     }
-    report.trace.push({label, ...receiptSummary(raw), signer: wallets[actor].address, args, error: error || null, state});
+    report.trace.push({label, ...receiptSummary(raw), signer, args, error: error || null, state});
     save('progress', report);
   }
 
@@ -110,14 +114,15 @@ async function main() {
         base_sha256: digest(left), base_size: left.length, target_sha256: digest(right), target_size: right.length,
         patch_hex: patch.toString('hex'), patch_bytes: exhaustiveCost(left, right)}), 'Patch cost or metadata differs');
       assert(patch.length === delta.patch_bytes && decode(left, patch).equals(right), 'Independent patch replay differs');
-      const restored = await read(label + '-apply', ['call', contract, 'apply_delta', '--args', ...item.urls, left.toString('hex')]);
+      const restored = await read(label + '-apply',
+        ['call', contract, 'apply_delta', '--args', ...item.urls, left.toString('hex')], output => output);
       assert(restored === right.toString('hex'), 'Onchain replay differs from upstream bytes');
       report.deltas[label] = delta;
     }
     await verify(label, raw, actor, {method: 'synthesize', args: item.urls}, error);
   }
 
-  await verify('deploy', deployed, 0, {args: []});
+  await verify('deploy', deployed, resumed ? null : 0, {args: []});
   await publish('forward', cases[0], 1);
   await publish('reverse', cases[1], 0);
   await publish('missing', cases[2], 1, 'Artifact unavailable');

@@ -38,8 +38,8 @@ function invoke(label,args){
     });
   });
 }
-async function read(label,args){
-  for(let i=0;i<3;i++){try{const out=await invoke(label,args),at=out.indexOf('Result:');assert(at>=0,'Missing CLI result');return JSON.parse(out.slice(at+7).trim());}catch(e){if(i===2)throw e;await delay(7000);}}
+async function read(label,args,parse=JSON.parse){
+  for(let i=0;i<3;i++){try{const out=await invoke(label,args),at=out.indexOf('Result:');assert(at>=0,'Missing CLI result');return parse(out.slice(at+7).trim());}catch(e){if(i===2)throw e;await delay(7000);}}
 }
 async function rpc(method,params){
   assert(['eth_chainId','eth_getTransactionByHash','gen_getContractCode'].includes(method),'Read-only RPC helper');
@@ -61,4 +61,4 @@ async function receipt(label,hash,success){
   assert(success?['SUCCESS','FINISHED_WITH_RETURN'].includes(s.execution):s.execution==='ERROR','Wrong execution outcome');
   return r;
 }
-module.exports={root,assert,equal,digest,sourceHash,delay,save,invoke,read,rpc,receipt,receiptSummary};
+module.exports={root,assert,equal,digest,sourceHash,delay,save,record,invoke,read,rpc,receipt,receiptSummary};

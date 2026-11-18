@@ -1,6 +1,10 @@
 name: DeltaLoom StudioNet proof
 on:
   workflow_dispatch:
+    inputs:
+      deployment:
+        description: Existing pristine deployment transaction with identical source, or leave empty to deploy
+        type: string
 permissions:
   contents: read
 jobs:
@@ -24,6 +28,8 @@ jobs:
           node --test tests/rpc-preflight.test.cjs
       - run: node scripts/bootstrap-ci.cjs
       - run: node scripts/prove.cjs
+        env:
+          DELTA_DEPLOYMENT: ${{ inputs.deployment }}
       - uses: actions/upload-artifact@v4
         if: always()
         with:
